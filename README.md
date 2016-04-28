@@ -3,5 +3,6 @@ FloorReconstruction
 
 Floor Reconstruction Repository
 
-Authors: José Pardeiro
-	 Javier V. Gómez
+Currently implementing the new and more efficient in computational terms version of the algorithm.
+
+Author: Jose Pardeiro
