@@ -1,4 +1,4 @@
-/** @file filter.hpp
+/** @file structs.hpp
 
     Copyright (C) 2016 Jose Pardeiro <jose.pardeiro@gmail.com>
 
@@ -14,30 +14,22 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef FILTER__FILTER_HPP_
-#define FILTER__FILTER_HPP_
+#ifndef BASE__STRUCTS_HPP_
+#define BASE__STRUCTS_HPP_
 
+#include <boost/make_shared.hpp>
 #include <pcl/io/pcd_io.h>
 
-/** @brief Basic interface for filter implementation.
+struct Surface
+{
+  Surface() :
+      cloud(boost::make_shared<pcl::PointCloud<pcl::PointXYZRGBA>>()) {
 
-    This class contains the basic interface class with the basic function to execute the
-    filtering process. This class is going to be inherited by the filter implementations where
-   	the functions behavior is going to be defined.
+  }
+  double a, b, c, d; // plane parameters
+  pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloud; // cloud on PointXYZRGBA format
 
-    @author Jose Pardeiro
- */
-
-class Filter {
-public:
-	/** @brief Constructor. */
-	Filter() {}
-
-	/** @brief Destructor. */
-	virtual ~Filter() {}
-
-	/** @brief Filter function definition. The function is implemented in
-	 	the filter specific classes. */
-	virtual void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) = 0;
+  typedef typename std::shared_ptr<Surface> Ptr;
 };
-#endif /* FILTER__FILTER_HPP_ */
+
+#endif /* BASE__STRUCTS_HPP_ */

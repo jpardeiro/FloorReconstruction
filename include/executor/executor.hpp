@@ -17,10 +17,13 @@
 #ifndef EXECUTOR_HPP_
 #define EXECUTOR_HPP_
 
+#include <cluster/cluster.hpp>
 #include <filter/filter.hpp>
+#include <segment/segment.hpp>
 
 /** @brief Result codification struct */
 enum Result {
+    NO_SEGMENT = -2,
 	NO_FILTER = -1,
 	SUCCESS = 0
 };
@@ -54,7 +57,15 @@ public:
 	/** @brief Set filter function. */
 	void set_filter(const std::shared_ptr<Filter> &filter);
 
+    /** @brief Set segment function. */
+	void set_segment(const std::shared_ptr<Segment> &segment);
+
+    /** @brief Set cluster function. */
+	void set_cluster(const std::shared_ptr<Cluster> &cluster);
+
 private:
+	std::shared_ptr<Cluster> _cluster; ///< Cluster defined.
 	std::shared_ptr<Filter> _filter; ///< Filter defined.
+	std::shared_ptr<Segment> _segment; ///< Segment defined.
 };
 #endif /* EXECUTOR_HPP_ */

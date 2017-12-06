@@ -9,12 +9,29 @@ Result Executor::execute(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) {
 	if (!_filter)
 		return Result::NO_FILTER;
 
+	if (!_segment)
+		return Result::NO_SEGMENT;
+
 	// Execute filtering process
 	_filter->filter(cloud);
+
+	// Execute the segmentation process
+	std::vector<Surface::Ptr> surfaces;
+	_segment->segment(cloud, surfaces);
+
+	_cluster->cluster(surfaces[0]->cloud, 3);
 
 	return Result::SUCCESS;
 }
 
 void Executor::set_filter(const std::shared_ptr<Filter> &filter) {
 	_filter = filter;
+}
+
+void Executor::set_segment(const std::shared_ptr<Segment> &segment) {
+	_segment = segment;
+}
+
+void Executor::set_cluster(const std::shared_ptr<Cluster> &cluster) {
+	_cluster = cluster;
 }

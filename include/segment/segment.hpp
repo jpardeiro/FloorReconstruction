@@ -1,4 +1,4 @@
-/** @file voxel_grid.hpp
+/** @file segment.hpp
 
     Copyright (C) 2016 Jose Pardeiro <jose.pardeiro@gmail.com>
 
@@ -14,33 +14,32 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef FILTER__VOXEL_GRID_HPP_
-#define FILTER__VOXEL_GRID_HPP_
+#ifndef SEGMENT__SEGMENT_HPP_
+#define SEGMENT__SEGMENT_HPP_
 
-#include <filter/filter.hpp>
-#include <pcl/filters/voxel_grid.h>
+#include <pcl/io/pcd_io.h>
+#include <base/structs.hpp>
 
-/** @brief VoxelGrid filter implementation.
+/** @brief Basic interface for segment implementation.
 
-    This class contains the implementation of the VoxelGrid filter.
+    This class contains the basic interface class with the basic function to execute the
+    segmentation process. This class is going to be inherited by the segment implementations where
+   	the functions behavior is going to be defined.
 
     @author Jose Pardeiro
  */
 
-class VoxelGrid : public Filter {
+class Segment {
 public:
-	/** @brief Constructor. Define the default parameters */
-	VoxelGrid(const float &leaf_size_x = 0.03f,
-			  const float &leaf_size_y = 0.03f,
-			  const float &leaf_size_z = 0.03f);
+	/** @brief Constructor. */
+	Segment() {}
 
 	/** @brief Destructor. */
-	virtual ~VoxelGrid();
+	virtual ~Segment() {}
 
-	/** @brief VoxelGrid specific implementation of the filter function */
-	void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
-
-private:
-	std::shared_ptr<pcl::VoxelGrid<pcl::PointXYZRGBA>> _filter; ///< Filter definition.
+	/** @brief Segment function definition. The function is implemented in
+	 	the segment specific classes. */
+	virtual void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+        std::vector<Surface::Ptr>& surfaces) = 0;
 };
-#endif /* FILTER__VOXEL_GRID_HPP_ */
+#endif /* SEGMENT__SEGMENT_HPP_ */
