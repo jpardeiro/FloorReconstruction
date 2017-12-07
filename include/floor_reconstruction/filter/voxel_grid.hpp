@@ -17,7 +17,7 @@
 #ifndef FILTER__VOXEL_GRID_HPP_
 #define FILTER__VOXEL_GRID_HPP_
 
-#include <filter/filter.hpp>
+#include <floor_reconstruction/filter/filter.hpp>
 #include <pcl/filters/voxel_grid.h>
 
 /** @brief VoxelGrid filter implementation.

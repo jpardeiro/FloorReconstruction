@@ -1,4 +1,4 @@
-/** @file cluster.hpp
+/** @file segment.hpp
 
     Copyright (C) 2016 Jose Pardeiro <jose.pardeiro@gmail.com>
 
@@ -14,32 +14,32 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CLUSTER__CLUSTER_HPP_
-#define CLUSTER__CLUSTER_HPP_
+#ifndef SEGMENT__SEGMENT_HPP_
+#define SEGMENT__SEGMENT_HPP_
 
 #include <pcl/io/pcd_io.h>
-#include <base/structs.hpp>
+#include <floor_reconstruction/base/structs.hpp>
 
-/** @brief Basic interface for cluster implementation.
+/** @brief Basic interface for segment implementation.
 
     This class contains the basic interface class with the basic function to execute the
-    clustering process. This class is going to be inherited by the segment implementations where
+    segmentation process. This class is going to be inherited by the segment implementations where
    	the functions behavior is going to be defined.
 
     @author Jose Pardeiro
  */
 
-class Cluster {
+class Segment {
 public:
 	/** @brief Constructor. */
-	Cluster() {}
+	Segment() {}
 
 	/** @brief Destructor. */
-	virtual ~Cluster() {}
+	virtual ~Segment() {}
 
-	/** @brief Cluster function definition. The function is implemented in
+	/** @brief Segment function definition. The function is implemented in
 	 	the segment specific classes. */
-	virtual void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
-        Centroids& centroids) = 0;
+	virtual void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+        std::vector<Surface::Ptr>& surfaces) = 0;
 };
-#endif /* CLUSTER__CLUSTER_HPP_ */
+#endif /* SEGMENT__SEGMENT_HPP_ */

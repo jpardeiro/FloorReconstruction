@@ -17,7 +17,7 @@
 #ifndef SEGMENT__SAC_SEGMENTATION_HPP_
 #define SEGMENT__SAC_SEGMENTATION_HPP_
 
-#include <segment/segment.hpp>
+#include <floor_reconstruction/segment/segment.hpp>
 
 #include <pcl/ModelCoefficients.h>
 #include <pcl/filters/extract_indices.h>

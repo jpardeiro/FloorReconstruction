@@ -1,4 +1,4 @@
-/** @file segment.hpp
+/** @file kmeans.hpp
 
     Copyright (C) 2016 Jose Pardeiro <jose.pardeiro@gmail.com>
 
@@ -14,32 +14,34 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SEGMENT__SEGMENT_HPP_
-#define SEGMENT__SEGMENT_HPP_
+#ifndef CLUSTER__KMEANS_HPP_
+#define CLUSTER__KMEANS_HPP_
 
 #include <pcl/io/pcd_io.h>
-#include <base/structs.hpp>
+#include <floor_reconstruction/cluster/cluster.hpp>
 
-/** @brief Basic interface for segment implementation.
+/** @brief Basic interface for cluster implementation.
 
     This class contains the basic interface class with the basic function to execute the
-    segmentation process. This class is going to be inherited by the segment implementations where
+    clustering process. This class is going to be inherited by the segment implementations where
    	the functions behavior is going to be defined.
 
     @author Jose Pardeiro
  */
 
-class Segment {
+class Kmeans : public Cluster {
 public:
 	/** @brief Constructor. */
-	Segment() {}
+	Kmeans();
 
 	/** @brief Destructor. */
-	virtual ~Segment() {}
+	virtual ~Kmeans();
 
-	/** @brief Segment function definition. The function is implemented in
+	/** @brief Cluster function definition. The function is implemented in
 	 	the segment specific classes. */
-	virtual void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
-        std::vector<Surface::Ptr>& surfaces) = 0;
+	void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
+        Centroids& centroids);
+
+private:
 };
-#endif /* SEGMENT__SEGMENT_HPP_ */
+#endif /* CLUSTER__CLUSTER_HPP_ */

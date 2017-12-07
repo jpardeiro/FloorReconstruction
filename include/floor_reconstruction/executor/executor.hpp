@@ -17,9 +17,9 @@
 #ifndef EXECUTOR_HPP_
 #define EXECUTOR_HPP_
 
-#include <cluster/cluster.hpp>
-#include <filter/filter.hpp>
-#include <segment/segment.hpp>
+#include <floor_reconstruction/cluster/cluster.hpp>
+#include <floor_reconstruction/filter/filter.hpp>
+#include <floor_reconstruction/segment/segment.hpp>
 
 /** @brief Result codification struct */
 enum Result {
