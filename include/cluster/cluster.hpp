@@ -18,6 +18,7 @@
 #define CLUSTER__CLUSTER_HPP_
 
 #include <pcl/io/pcd_io.h>
+#include <base/structs.hpp>
 
 /** @brief Basic interface for cluster implementation.
 
@@ -38,6 +39,7 @@ public:
 
 	/** @brief Cluster function definition. The function is implemented in
 	 	the segment specific classes. */
-	virtual void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k) = 0;
+	virtual void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
+        Centroids& centroids) = 0;
 };
 #endif /* CLUSTER__CLUSTER_HPP_ */

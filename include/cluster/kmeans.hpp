@@ -18,6 +18,7 @@
 #define CLUSTER__KMEANS_HPP_
 
 #include <pcl/io/pcd_io.h>
+#include <cluster/cluster.hpp>
 
 /** @brief Basic interface for cluster implementation.
 
@@ -28,7 +29,7 @@
     @author Jose Pardeiro
  */
 
-class Kmeans {
+class Kmeans : public Cluster {
 public:
 	/** @brief Constructor. */
 	Kmeans();
@@ -38,7 +39,8 @@ public:
 
 	/** @brief Cluster function definition. The function is implemented in
 	 	the segment specific classes. */
-	void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k);
+	void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
+        Centroids& centroids);
 
 private:
 };

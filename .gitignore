@@ -1,7 +1,7 @@
 build/
 *.*~
-#IDE temps
 .idea
 *.*user
 .cproject
 .project
+.vscode

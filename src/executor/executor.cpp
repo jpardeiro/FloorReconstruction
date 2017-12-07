@@ -18,8 +18,10 @@ Result Executor::execute(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) {
 	// Execute the segmentation process
 	std::vector<Surface::Ptr> surfaces;
 	_segment->segment(cloud, surfaces);
+	std::cout << "surfaces size: " << surfaces.size() << std::endl;
 
-	_cluster->cluster(surfaces[0]->cloud, 3);
+	Centroids centroids;
+	_cluster->cluster(surfaces[0]->cloud, 3, centroids);
 
 	return Result::SUCCESS;
 }

@@ -16,17 +16,15 @@ SET(CMAKE_CXX_FLAGS_DEBUG  "-Wall -Wno-unused-local-typedefs -g")
 
 
 find_package(PCL 1.2 REQUIRED)
-find_package(OpenCV REQUIRED)
 
 # Self-made includes
 include_directories(
-  ${FloorReconstruction_INCLUDE_DIRS}
   include
 )
 
-include_directories(${PCL_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
-link_directories(${PCL_LIBRARY_DIRS} ${OpenCV_INCLUDE_DIRS})
-add_definitions(${PCL_DEFINITIONS} ${OpenCV_DEFINITIONS})
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
 
 add_executable (floor_reconstruction
   src/main.cpp
@@ -34,4 +32,4 @@ add_executable (floor_reconstruction
   src/filter/voxel_grid.cpp
   src/executor/executor.cpp
   src/segment/sac_segmentation.cpp)
-target_link_libraries (floor_reconstruction ${PCL_LIBRARIES} ${OpenCV_LIBS} )
+target_link_libraries (floor_reconstruction ${PCL_LIBRARIES})

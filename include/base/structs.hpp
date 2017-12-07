@@ -23,13 +23,27 @@
 struct Surface
 {
   Surface() :
-      cloud(boost::make_shared<pcl::PointCloud<pcl::PointXYZRGBA>>()) {
-
-  }
+      cloud(boost::make_shared<pcl::PointCloud<pcl::PointXYZRGBA>>()) {}
   double a, b, c, d; // plane parameters
   pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloud; // cloud on PointXYZRGBA format
 
   typedef typename std::shared_ptr<Surface> Ptr;
 };
+
+struct Point {
+    Point() :
+        x(0), y(0), z() {}
+
+    Point(const float& x_in, const float& y_in, const float& z_in) :
+        x(x_in), y(y_in), z(z_in) {}
+
+    float x;
+    float y;
+    float z;
+};
+
+typedef Point Centroid;
+
+typedef std::vector<Centroid> Centroids;
 
 #endif /* BASE__STRUCTS_HPP_ */

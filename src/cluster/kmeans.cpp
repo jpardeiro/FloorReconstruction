@@ -8,21 +8,33 @@ Kmeans::Kmeans() {
 
 Kmeans::~Kmeans() {
 
-}   
+}
 
-void Kmeans::cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k) {
-    // pcl::Kmeans kmeans(cloud->points.size(), 3);
-    // kmeans.setClusterSize(k);
+void Kmeans::cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
+        Centroids& centroids) {
 
-    // const uint32_t n_points = cloud->points.size();
-    // std::vector<pcl::Kmeans::Point> points(n_points);
+    if(centroids.size() == 0) {
+        centroids.reserve(k);
+    } else if(centroids.size() != k) {
+        std::cout << "The vector has " << centroids.size() << " elements but " <<
+            k << " sre required" << std::endl;
+        
+        return;
+    }
 
-    // for(uint32_t i = 0; i < n_points; ++i) {
-    //     points[i] = {cloud->points[i].x, cloud->points[i].y, cloud->points[i].z};
-    // }
-    // kmeans.setInputData(points);
-    // kmeans.computeCentroids();
-    // pcl::Kmeans::Centroids centroids = kmeans.get_centroids();
-    // std::cout << "n centroids: " << centroids.size() << std::endl;
-    // std::cout << "size: " << centroids[0].size() << std::endl;
+    pcl::Kmeans kmeans(cloud->points.size(), 3);
+    kmeans.setClusterSize(k);
+
+    for(const auto& cloud_point: cloud->points) {
+        auto point = pcl::Kmeans::Point{cloud_point.x, cloud_point.y, cloud_point.z};
+        kmeans.addDataPoint(point);
+    }
+    kmeans.kMeans();
+    pcl::Kmeans::Centroids pcl_centroids = kmeans.get_centroids();
+
+    assert(centroids.size() != pcl_centroids.size());
+
+    for(const auto& centroid: pcl_centroids) {
+        centroids.emplace_back(Centroid(centroid[0], centroid[1], centroid[2]));
+    }
 }

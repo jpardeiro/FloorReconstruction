@@ -24,6 +24,9 @@ int main(int argc, char** argv)
 	auto segment = std::make_shared<SacSegmentation>();
 	executor->set_segment(segment);
 
+	auto cluster = std::make_shared<Kmeans>();
+	executor->set_cluster(cluster);
+
 	pcl::console::TicToc timer;
 	timer.tic();
 
