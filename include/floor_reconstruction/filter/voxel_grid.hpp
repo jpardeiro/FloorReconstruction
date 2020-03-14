@@ -17,9 +17,9 @@
 #ifndef FILTER__VOXEL_GRID_HPP_
 #define FILTER__VOXEL_GRID_HPP_
 
-#include <floor_reconstruction/filter/filter.hpp>
 #include <pcl/filters/voxel_grid.h>
 
+#include <floor_reconstruction/filter/filter.hpp>
 
 /**
  *  VoxelGrid filter implementation.
@@ -34,28 +34,29 @@
  */
 
 class VoxelGrid : public Filter {
-public:
-    /**
-     *  @brief  Constructor of the filter.
-     *  @param  leaf_size_x Size of the voxel in the X axis, in meters.
-     *  @param  leaf_size_y Size of the voxel in the Y axis, in meters.
-     *  @param  leaf_size_z Size of the voxel in the Z axis, in meters.
-     */
-	VoxelGrid(const float &leaf_size_x = 0.03f,
-			  const float &leaf_size_y = 0.03f,
-			  const float &leaf_size_z = 0.03f);
+ public:
+  /**
+   *  @brief  Constructor of the filter.
+   *  @param  leaf_size_x Size of the voxel in the X axis, in meters.
+   *  @param  leaf_size_y Size of the voxel in the Y axis, in meters.
+   *  @param  leaf_size_z Size of the voxel in the Z axis, in meters.
+   */
+  VoxelGrid(const float &leaf_size_x = 0.03f, const float &leaf_size_y = 0.03f,
+            const float &leaf_size_z = 0.03f);
 
-    /**
-     *  @brief  Destructor of the filter.
-     */
-    virtual ~VoxelGrid();
+  /**
+   *  @brief  Destructor of the filter.
+   */
+  virtual ~VoxelGrid();
 
-    /**
-     *  @brief  VoxelGrid specific implementation of the filter function.
-     */
-	void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
+  /**
+   *  @brief  VoxelGrid specific implementation of the filter function.
+   */
+  void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
 
-private:
-	std::shared_ptr<pcl::VoxelGrid<pcl::PointXYZRGBA>> _filter; // Filter implementation.
+ private:
+  std::shared_ptr<pcl::VoxelGrid<pcl::PointXYZRGBA>>
+      _filter;  // Filter implementation.
 };
+
 #endif /* FILTER__VOXEL_GRID_HPP_ */

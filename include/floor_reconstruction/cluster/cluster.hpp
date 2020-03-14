@@ -18,6 +18,7 @@
 #define CLUSTER__CLUSTER_HPP_
 
 #include <pcl/io/pcd_io.h>
+
 #include <floor_reconstruction/base/structs.hpp>
 
 /**
@@ -31,33 +32,33 @@
  */
 
 class Cluster {
-public:
-    /**
-     *  @brief  Constructor of the cluster.
-     */
-    Cluster() {}
+ public:
+  /**
+   *  @brief  Constructor of the cluster.
+   */
+  Cluster() {}
 
-	/**
-     *  @brief  Destructor of the cluster.
-     */
-	virtual ~Cluster() {}
+  /**
+   *  @brief  Destructor of the cluster.
+   */
+  virtual ~Cluster() {}
 
-    /**
-     *  @brief  Cluster function definition. The function is meant to be
-     *          implemented by the cluster specific classes.
-     *
-     *  @param  cloud Pointer to cloud containing the data to run the cluster.
-     *  @param  k Number of clusters in which the cloud is going to be split.
-     *            This number is crucial for both performance and robustness.
-     *            In performance because the number of clusters have a
-     *            significant impact on the execution time of the function.
-     *            In robustness, because a large number of clusters can split
-     *            very similar data into multiple clusters due to very small
-     *            differences.
-     *  @param  centroids Resulting vector of Centroid containing the center of
-     *                    each cluster.
-     */
-	virtual void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
-        Centroids& centroids) = 0;
+  /**
+   *  @brief  Cluster function definition. The function is meant to be
+   *          implemented by the cluster specific classes.
+   *
+   *  @param  cloud Pointer to cloud containing the data to run the cluster.
+   *  @param  k Number of clusters in which the cloud is going to be split.
+   *            This number is crucial for both performance and robustness.
+   *            In performance because the number of clusters have a
+   *            significant impact on the execution time of the function.
+   *            In robustness, because a large number of clusters can split
+   *            very similar data into multiple clusters due to very small
+   *            differences.
+   *  @param  centroids Resulting vector of Centroid containing the center of
+   *                    each cluster.
+   */
+  virtual void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+                       const uint32_t k, Centroids& centroids) = 0;
 };
 #endif /* CLUSTER__CLUSTER_HPP_ */

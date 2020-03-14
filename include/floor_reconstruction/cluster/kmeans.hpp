@@ -18,6 +18,7 @@
 #define CLUSTER__KMEANS_HPP_
 
 #include <pcl/io/pcd_io.h>
+
 #include <floor_reconstruction/cluster/cluster.hpp>
 
 /**
@@ -25,25 +26,26 @@
  *
  *  This class contains the implementation of the Kmeans cluster.
  *
- *  Detailed information about the Kmeans clustering can be found [here](https://en.wikipedia.org/wiki/K-means_clustering)
+ *  Detailed information about the Kmeans clustering can be found
+ * [here](https://en.wikipedia.org/wiki/K-means_clustering)
  */
 
 class Kmeans : public Cluster {
-public:
-    /**
-     *  @brief  Constructor of the cluster.
-     */
-	Kmeans();
+ public:
+  /**
+   *  @brief  Constructor of the cluster.
+   */
+  Kmeans();
 
-	/**
-     *  @brief  Destructor of the cluster.
-     */
-	virtual ~Kmeans();
+  /**
+   *  @brief  Destructor of the cluster.
+   */
+  virtual ~Kmeans();
 
-	/**
-     *  @brief  Kmeans specific implementation of the cluster function.
-     */
-	void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
-        Centroids& centroids);
+  /**
+   *  @brief  Kmeans specific implementation of the cluster function.
+   */
+  void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
+               Centroids& centroids);
 };
 #endif /* CLUSTER__CLUSTER_HPP_ */

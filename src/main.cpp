@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
   auto filter = std::make_shared<VoxelGrid>();
   executor->set_filter(filter);
 
-  // Enable segment
+  // Enable segmentation
   auto segment = std::make_shared<SacSegmentation>();
   executor->set_segment(segment);
 

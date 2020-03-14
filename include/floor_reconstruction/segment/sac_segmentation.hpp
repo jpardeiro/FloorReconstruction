@@ -17,45 +17,46 @@
 #ifndef SEGMENT__SAC_SEGMENTATION_HPP_
 #define SEGMENT__SAC_SEGMENTATION_HPP_
 
-#include <floor_reconstruction/segment/segment.hpp>
-
 #include <pcl/ModelCoefficients.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl/segmentation/sac_segmentation.h>
+
+#include <floor_reconstruction/segment/segment.hpp>
 
 /**
  *  Random Sample Consensus segmentation implementation.
  *
  *  This class contains the implementation of the Random Sample Consensus
  *  segmentation. Detailed information about this type of segmentation
- *  algorithms can be found [here](https://en.wikipedia.org/wiki/Random_sample_consensus)
+ *  algorithms can be found
+ * [here](https://en.wikipedia.org/wiki/Random_sample_consensus)
  */
 
 class SacSegmentation : public Segment {
-public:
-    /**
-     *  @brief  Constructor of the sac segmentation object.
-     */
-    //@todo pass the configuration in the constructor
-	SacSegmentation();
+ public:
+  /**
+   *  @brief  Constructor of the sac segmentation object.
+   */
+  //@todo pass the configuration in the constructor
+  SacSegmentation();
 
-    /**
-     *  @brief  Destructor of the sac segmentation object.
-     */
-    virtual ~SacSegmentation();
+  /**
+   *  @brief  Destructor of the sac segmentation object.
+   */
+  virtual ~SacSegmentation();
 
-    /**
-     *  @brief  Sac segmentation specific implementation of the segment function.
-     */
-	void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud,
-        std::vector<Surface::Ptr>& surfaces);
+  /**
+   *  @brief  Sac segmentation specific implementation of the segment function.
+   */
+  void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+               std::vector<Surface::Ptr>& surfaces);
 
-private:
-    float _remaining_points_coefficient; // As the segmentation is iterative,
-                                         // this variable specifies minimum the
-                                         // size of the unsegmented cloud to
-                                         // stop the process
-    pcl::SACSegmentation<pcl::PointXYZRGBA> _segmentation; // Segmentation object
-    pcl::ExtractIndices<pcl::PointXYZRGBA> _extract; // Filtering object
+ private:
+  float _remaining_points_coefficient;  // As the segmentation is iterative,
+                                        // this variable specifies minimum the
+                                        // size of the unsegmented cloud to
+                                        // stop the process
+  pcl::SACSegmentation<pcl::PointXYZRGBA> _segmentation;  // Segmentation object
+  pcl::ExtractIndices<pcl::PointXYZRGBA> _extract;        // Filtering object
 };
 #endif /* SEGMENT__SAC_SEGMENTATION_HPP_ */

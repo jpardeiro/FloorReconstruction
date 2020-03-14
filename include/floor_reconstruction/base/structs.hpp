@@ -17,8 +17,9 @@
 #ifndef BASE__STRUCTS_HPP_
 #define BASE__STRUCTS_HPP_
 
-#include <boost/make_shared.hpp>
 #include <pcl/io/pcd_io.h>
+
+#include <boost/make_shared.hpp>
 
 /**
  *  Set of structures implemented to run the algorithm.
@@ -28,12 +29,11 @@
  *  Surface definition. It contains the plane parameters and the cloud contained
  *  there.
  */
-struct Surface
-{
-  Surface() :
-      cloud(boost::make_shared<pcl::PointCloud<pcl::PointXYZRGBA>>()) {}
-  double a, b, c, d; // plane parameters
-  pcl::PointCloud<pcl::PointXYZRGBA>::Ptr cloud; // cloud on PointXYZRGBA format
+struct Surface {
+  Surface() : cloud(boost::make_shared<pcl::PointCloud<pcl::PointXYZRGBA>>()) {}
+  double a, b, c, d;  // plane parameters
+  pcl::PointCloud<pcl::PointXYZRGBA>::Ptr
+      cloud;  // cloud on PointXYZRGBA format
 
   typedef typename std::shared_ptr<Surface> Ptr;
 };
@@ -42,15 +42,14 @@ struct Surface
  *  Point in 3D defined.
  */
 struct Point {
-    Point() :
-        x(0), y(0), z(0) {}
+  Point() : x(0), y(0), z(0) {}
 
-    Point(const float& x_in, const float& y_in, const float& z_in) :
-        x(x_in), y(y_in), z(z_in) {}
+  Point(const float& x_in, const float& y_in, const float& z_in)
+      : x(x_in), y(y_in), z(z_in) {}
 
-    float x;
-    float y;
-    float z;
+  float x;
+  float y;
+  float z;
 };
 
 typedef Point Centroid;

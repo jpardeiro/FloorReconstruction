@@ -32,26 +32,26 @@
  */
 
 class Filter {
-public:
-    /**
-     *  @brief  Constructor of the filter.
-     */
-	Filter() {}
+ public:
+  /**
+   *  @brief  Constructor of the filter.
+   */
+  Filter() {}
 
-    /**
-     *  @brief  Destructor of the filter.
-     */
-	virtual ~Filter() {}
+  /**
+   *  @brief  Destructor of the filter.
+   */
+  virtual ~Filter() {}
 
-    /**
-     *  @brief  Filter function definition. The function is meant to be
-     *          implemented by the filter specific classes.
-     *
-     *  @param  cloud Pointer to cloud to be filtered. At the end of the
-     *                function, the pointer will point to the resulted filtered
-     *                cloud.
-     */
-	virtual void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) = 0;
+  /**
+   *  @brief  Filter function definition. The function is meant to be
+   *          implemented by the filter specific classes.
+   *
+   *  @param  cloud Pointer to cloud to be filtered. At the end of the
+   *                function, the pointer will point to the resulted filtered
+   *                cloud.
+   */
+  virtual void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) = 0;
 };
 
 #endif /* FILTER__FILTER_HPP_ */

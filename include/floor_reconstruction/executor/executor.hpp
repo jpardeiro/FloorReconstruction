@@ -22,11 +22,7 @@
 #include <floor_reconstruction/segment/segment.hpp>
 
 /** @brief Result codification struct */
-enum Result {
-    NO_SEGMENT = -2,
-	NO_FILTER = -1,
-	SUCCESS = 0
-};
+enum Result { NO_SEGMENT = -2, NO_FILTER = -1, SUCCESS = 0 };
 
 /**
  *  Basic executor implementation.
@@ -44,43 +40,43 @@ enum Result {
  */
 
 class Executor {
-public:
-    /**
-     *  @brief  Constructor of the executor.
-     */
-	Executor();
+ public:
+  /**
+   *  @brief  Constructor of the executor.
+   */
+  Executor();
 
-	/**
-     *  @brief  Destructor of the executor.
-     */
-	virtual ~Executor();
+  /**
+   *  @brief  Destructor of the executor.
+   */
+  virtual ~Executor();
 
-    /**
-     *  @brief  Execute all the algorithim steps over a given pointcloud.
-     *
-     *  @param  cloud Pointer to pointcloud to be processed.
-     *  @return result of the process, using the Result enum.
-     */
-	Result execute(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
+  /**
+   *  @brief  Execute all the algorithim steps over a given pointcloud.
+   *
+   *  @param  cloud Pointer to pointcloud to be processed.
+   *  @return result of the process, using the Result enum.
+   */
+  Result execute(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
 
-	/**
-     *  @brief  Set filter implementation.
-     */
-	void set_filter(const std::shared_ptr<Filter> &filter);
+  /**
+   *  @brief  Set filter implementation.
+   */
+  void set_filter(const std::shared_ptr<Filter> &filter);
 
-    /**
-     *  @brief  Set segment implementation.
-     */
-	void set_segment(const std::shared_ptr<Segment> &segment);
+  /**
+   *  @brief  Set segment implementation.
+   */
+  void set_segment(const std::shared_ptr<Segment> &segment);
 
-    /**
-     *  @brief  Set cluster implementation.
-     */
-	void set_cluster(const std::shared_ptr<Cluster> &cluster);
+  /**
+   *  @brief  Set cluster implementation.
+   */
+  void set_cluster(const std::shared_ptr<Cluster> &cluster);
 
-private:
-	std::shared_ptr<Cluster> _cluster; // Cluster defined.
-	std::shared_ptr<Filter> _filter; // Filter defined.
-	std::shared_ptr<Segment> _segment; // Segment defined.
+ private:
+  std::shared_ptr<Cluster> _cluster;  // Cluster defined.
+  std::shared_ptr<Filter> _filter;    // Filter defined.
+  std::shared_ptr<Segment> _segment;  // Segment defined.
 };
 #endif /* EXECUTOR_HPP_ */
