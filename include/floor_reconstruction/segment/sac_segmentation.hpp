@@ -23,33 +23,39 @@
 #include <pcl/filters/extract_indices.h>
 #include <pcl/segmentation/sac_segmentation.h>
 
-/** @brief Basic interface for segment implementation.
-
-    This class contains the basic interface class with the basic function to execute the
-    segmentation process. This class is going to be inherited by the segment implementations where
-   	the functions behavior is going to be defined.
-
-    @author Jose Pardeiro
+/**
+ *  Random Sample Consensus segmentation implementation.
+ *
+ *  This class contains the implementation of the Random Sample Consensus
+ *  segmentation. Detailed information about this type of segmentation
+ *  algorithms can be found [here](https://en.wikipedia.org/wiki/Random_sample_consensus)
  */
 
 class SacSegmentation : public Segment {
 public:
-	/** @brief Constructor. */
+    /**
+     *  @brief  Constructor of the sac segmentation object.
+     */
     //@todo pass the configuration in the constructor
 	SacSegmentation();
 
-	/** @brief Destructor. */
-	virtual ~SacSegmentation();
+    /**
+     *  @brief  Destructor of the sac segmentation object.
+     */
+    virtual ~SacSegmentation();
 
-	/** @brief Segment function implementation. It uses the ExtractIndices algorithm to segment the
-     * point cloud and 
+    /**
+     *  @brief  Sac segmentation specific implementation of the segment function.
      */
 	void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud,
         std::vector<Surface::Ptr>& surfaces);
 
 private:
-    float _remaining_points_coefficient;
-    pcl::SACSegmentation<pcl::PointXYZRGBA> _segmentation;
-    pcl::ExtractIndices<pcl::PointXYZRGBA> _extract;
+    float _remaining_points_coefficient; // As the segmentation is iterative,
+                                         // this variable specifies minimum the
+                                         // size of the unsegmented cloud to
+                                         // stop the process
+    pcl::SACSegmentation<pcl::PointXYZRGBA> _segmentation; // Segmentation object
+    pcl::ExtractIndices<pcl::PointXYZRGBA> _extract; // Filtering object
 };
 #endif /* SEGMENT__SAC_SEGMENTATION_HPP_ */

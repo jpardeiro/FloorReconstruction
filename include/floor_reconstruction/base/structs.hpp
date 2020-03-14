@@ -20,6 +20,14 @@
 #include <boost/make_shared.hpp>
 #include <pcl/io/pcd_io.h>
 
+/**
+ *  Set of structures implemented to run the algorithm.
+ */
+
+/**
+ *  Surface definition. It contains the plane parameters and the cloud contained
+ *  there.
+ */
 struct Surface
 {
   Surface() :
@@ -30,9 +38,12 @@ struct Surface
   typedef typename std::shared_ptr<Surface> Ptr;
 };
 
+/**
+ *  Point in 3D defined.
+ */
 struct Point {
     Point() :
-        x(0), y(0), z() {}
+        x(0), y(0), z(0) {}
 
     Point(const float& x_in, const float& y_in, const float& z_in) :
         x(x_in), y(y_in), z(z_in) {}

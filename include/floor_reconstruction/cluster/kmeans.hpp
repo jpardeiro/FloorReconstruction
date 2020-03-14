@@ -20,28 +20,30 @@
 #include <pcl/io/pcd_io.h>
 #include <floor_reconstruction/cluster/cluster.hpp>
 
-/** @brief Basic interface for cluster implementation.
-
-    This class contains the basic interface class with the basic function to execute the
-    clustering process. This class is going to be inherited by the segment implementations where
-   	the functions behavior is going to be defined.
-
-    @author Jose Pardeiro
+/**
+ *  Kmeans cluster implementation.
+ *
+ *  This class contains the implementation of the Kmeans cluster.
+ *
+ *  Detailed information about the Kmeans clustering can be found [here](https://en.wikipedia.org/wiki/K-means_clustering)
  */
 
 class Kmeans : public Cluster {
 public:
-	/** @brief Constructor. */
+    /**
+     *  @brief  Constructor of the cluster.
+     */
 	Kmeans();
 
-	/** @brief Destructor. */
+	/**
+     *  @brief  Destructor of the cluster.
+     */
 	virtual ~Kmeans();
 
-	/** @brief Cluster function definition. The function is implemented in
-	 	the segment specific classes. */
+	/**
+     *  @brief  Kmeans specific implementation of the cluster function.
+     */
 	void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
         Centroids& centroids);
-
-private:
 };
 #endif /* CLUSTER__CLUSTER_HPP_ */

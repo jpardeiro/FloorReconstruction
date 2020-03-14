@@ -5,3 +5,5 @@ build/
 .cproject
 .project
 .vscode
+.clang-format
+*.code-workspace

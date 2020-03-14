@@ -2,13 +2,9 @@
 
 #include <pcl/ml/kmeans.h>
 
-Kmeans::Kmeans() {
+Kmeans::Kmeans() {}
 
-}
-
-Kmeans::~Kmeans() {
-
-}
+Kmeans::~Kmeans() {}
 
 void Kmeans::cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
         Centroids& centroids) {
@@ -17,8 +13,8 @@ void Kmeans::cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint3
         centroids.reserve(k);
     } else if(centroids.size() != k) {
         std::cout << "The vector has " << centroids.size() << " elements but " <<
-            k << " sre required" << std::endl;
-        
+            k << " are required" << std::endl;
+
         return;
     }
 

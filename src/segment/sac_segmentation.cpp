@@ -11,9 +11,7 @@ SacSegmentation::SacSegmentation() :
 
 }
 
-SacSegmentation::~SacSegmentation() {
-
-}
+SacSegmentation::~SacSegmentation() {}
 
 void SacSegmentation::segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud,
         std::vector<Surface::Ptr>& surfaces) {
@@ -46,7 +44,7 @@ void SacSegmentation::segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud,
         surf->d = coefficients.values[3];
 
         surfaces.push_back(surf);
-		
+
         // Create the filtering object
         _extract.setNegative(true);
         _extract.filter(*cloud);

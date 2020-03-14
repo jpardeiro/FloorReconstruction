@@ -20,26 +20,42 @@
 #include <pcl/io/pcd_io.h>
 #include <floor_reconstruction/base/structs.hpp>
 
-/** @brief Basic interface for segment implementation.
-
-    This class contains the basic interface class with the basic function to execute the
-    segmentation process. This class is going to be inherited by the segment implementations where
-   	the functions behavior is going to be defined.
-
-    @author Jose Pardeiro
+/**
+ *  Interface class for the segmentation.
+ *
+ *  This class is purely virtual and includes the basic interface for the
+ *  segmentation process.
+ *
+ *  The purpose of the segmentation consists on take an input pointcloud and
+ *  split it into multiple planes which contain a significant amount of data.
+ *  As an example, if the point cloud contains a floor and two walls as
+ *  significant areas, the resulting planes will contain the data required to
+ *  define them.
  */
 
 class Segment {
 public:
-	/** @brief Constructor. */
-	Segment() {}
+    /**
+     *  @brief  Constructor of the segmentation object.
+     */
+    Segment() {}
 
-	/** @brief Destructor. */
-	virtual ~Segment() {}
+    /**
+     *  @brief  Destructor of the segmentation object.
+     */
+    virtual ~Segment() {}
 
-	/** @brief Segment function definition. The function is implemented in
-	 	the segment specific classes. */
+    /**
+     *  @brief  Segment function definition. The function is meant to be
+     *          implemented by the segment specific classes.
+     *
+     *  @param  cloud Pointer to cloud to be segmented.
+     *  @param  surfaces Vector of pointers to the Surface struct. This vector
+     *                   will contain the resulting segmented planes.
+     */
+
 	virtual void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
         std::vector<Surface::Ptr>& surfaces) = 0;
 };
+
 #endif /* SEGMENT__SEGMENT_HPP_ */

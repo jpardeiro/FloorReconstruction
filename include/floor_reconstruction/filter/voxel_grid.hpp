@@ -20,27 +20,42 @@
 #include <floor_reconstruction/filter/filter.hpp>
 #include <pcl/filters/voxel_grid.h>
 
-/** @brief VoxelGrid filter implementation.
 
-    This class contains the implementation of the VoxelGrid filter.
-
-    @author Jose Pardeiro
+/**
+ *  VoxelGrid filter implementation.
+ *
+ *  This class contains the implementation of the voxel grid filter.
+ *
+ *  The voxel grid filter down-samples the data by taking an average of the
+ *  points in the cloud in terms of spatial distance. The filter divides the
+ *  cloud in a set of cubes, called voxels, and the set of points which are
+ *  located inside a voxel are combined into one output point. The size of the
+ *  voxel can be configured in every axis.
  */
 
 class VoxelGrid : public Filter {
 public:
-	/** @brief Constructor. Define the default parameters */
+    /**
+     *  @brief  Constructor of the filter.
+     *  @param  leaf_size_x Size of the voxel in the X axis, in meters.
+     *  @param  leaf_size_y Size of the voxel in the Y axis, in meters.
+     *  @param  leaf_size_z Size of the voxel in the Z axis, in meters.
+     */
 	VoxelGrid(const float &leaf_size_x = 0.03f,
 			  const float &leaf_size_y = 0.03f,
 			  const float &leaf_size_z = 0.03f);
 
-	/** @brief Destructor. */
-	virtual ~VoxelGrid();
+    /**
+     *  @brief  Destructor of the filter.
+     */
+    virtual ~VoxelGrid();
 
-	/** @brief VoxelGrid specific implementation of the filter function */
+    /**
+     *  @brief  VoxelGrid specific implementation of the filter function.
+     */
 	void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
 
 private:
-	std::shared_ptr<pcl::VoxelGrid<pcl::PointXYZRGBA>> _filter; ///< Filter definition.
+	std::shared_ptr<pcl::VoxelGrid<pcl::PointXYZRGBA>> _filter; // Filter implementation.
 };
 #endif /* FILTER__VOXEL_GRID_HPP_ */

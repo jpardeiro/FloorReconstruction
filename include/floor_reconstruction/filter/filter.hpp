@@ -19,25 +19,39 @@
 
 #include <pcl/io/pcd_io.h>
 
-/** @brief Basic interface for filter implementation.
-
-    This class contains the basic interface class with the basic function to execute the
-    filtering process. This class is going to be inherited by the filter implementations where
-   	the functions behavior is going to be defined.
-
-    @author Jose Pardeiro
+/**
+ *  Interface class for the filter.
+ *
+ *  This class is purely virtual and includes the basic interface for the
+ *  filtering process.
+ *
+ *  The purpose of the filtering consists on make the original pointcloud more
+ *  lightweight in order to reduce complexity during the processing steps
+ *  executed afterwards. The filtered pointcloud should be more lightweight but
+ *  still contain all the key components of the original pointcloud.
  */
 
 class Filter {
 public:
-	/** @brief Constructor. */
+    /**
+     *  @brief  Constructor of the filter.
+     */
 	Filter() {}
 
-	/** @brief Destructor. */
+    /**
+     *  @brief  Destructor of the filter.
+     */
 	virtual ~Filter() {}
 
-	/** @brief Filter function definition. The function is implemented in
-	 	the filter specific classes. */
+    /**
+     *  @brief  Filter function definition. The function is meant to be
+     *          implemented by the filter specific classes.
+     *
+     *  @param  cloud Pointer to cloud to be filtered. At the end of the
+     *                function, the pointer will point to the resulted filtered
+     *                cloud.
+     */
 	virtual void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) = 0;
 };
+
 #endif /* FILTER__FILTER_HPP_ */

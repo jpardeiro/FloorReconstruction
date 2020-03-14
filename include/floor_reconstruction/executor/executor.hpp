@@ -28,44 +28,59 @@ enum Result {
 	SUCCESS = 0
 };
 
-/** @brief Basic executor implementation.
-
-    This class contains the calls to all the steps which compose the algorithm.
-    The specific implementation of each step has to be define after instantiate
-    the class using the set functions.
-
-	@todo Once all the steps are implemented the algorithm should
-	work in two threads: one for the point cloud steps and the
-	second one for the image analysis.
-
-    @author Jose Pardeiro
+/**
+ *  Basic executor implementation.
+ *
+ *  This class contains the calls to all the steps which compose the algorithm.
+ *  The specific implementation of each step has to be define after instantiate
+ *  the class using the set functions.
+ *
+ * @todo Once all the steps are implemented the algorithm should work in two
+ *       threads: one for the point cloud steps and the second one for the
+ *       image analysis.
+ *
+ * @todo Once all the steps are implemented, remove the setters and pass them in
+ * 		 the constructor.
  */
 
 class Executor {
 public:
-	/** @brief Constructor. */
+    /**
+     *  @brief  Constructor of the executor.
+     */
 	Executor();
 
-	/** @brief Destructor. */
+	/**
+     *  @brief  Destructor of the executor.
+     */
 	virtual ~Executor();
 
-	/** @brief Execute the algorithm over an specific point cloud.
-
-	 	@return Result code */
+    /**
+     *  @brief  Execute all the algorithim steps over a given pointcloud.
+     *
+     *  @param  cloud Pointer to pointcloud to be processed.
+     *  @return result of the process, using the Result enum.
+     */
 	Result execute(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
 
-	/** @brief Set filter function. */
+	/**
+     *  @brief  Set filter implementation.
+     */
 	void set_filter(const std::shared_ptr<Filter> &filter);
 
-    /** @brief Set segment function. */
+    /**
+     *  @brief  Set segment implementation.
+     */
 	void set_segment(const std::shared_ptr<Segment> &segment);
 
-    /** @brief Set cluster function. */
+    /**
+     *  @brief  Set cluster implementation.
+     */
 	void set_cluster(const std::shared_ptr<Cluster> &cluster);
 
 private:
-	std::shared_ptr<Cluster> _cluster; ///< Cluster defined.
-	std::shared_ptr<Filter> _filter; ///< Filter defined.
-	std::shared_ptr<Segment> _segment; ///< Segment defined.
+	std::shared_ptr<Cluster> _cluster; // Cluster defined.
+	std::shared_ptr<Filter> _filter; // Filter defined.
+	std::shared_ptr<Segment> _segment; // Segment defined.
 };
 #endif /* EXECUTOR_HPP_ */
