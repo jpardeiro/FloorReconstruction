@@ -43,20 +43,20 @@ class SacSegmentation : public Segment {
   /**
    *  @brief  Destructor of the sac segmentation object.
    */
-  virtual ~SacSegmentation();
+  virtual ~SacSegmentation() = default;
 
   /**
    *  @brief  Sac segmentation specific implementation of the segment function.
    */
-  void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
-               std::vector<Surface::Ptr>& surfaces);
+  void perform_segmentation(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+                            std::vector<Surface::Ptr>& surfaces) override;
 
  private:
-  float _remaining_points_coefficient;  // As the segmentation is iterative,
+  float remaining_points_coefficient_;  // As the segmentation is iterative,
                                         // this variable specifies minimum the
                                         // size of the unsegmented cloud to
                                         // stop the process
-  pcl::SACSegmentation<pcl::PointXYZRGBA> _segmentation;  // Segmentation object
-  pcl::ExtractIndices<pcl::PointXYZRGBA> _extract;        // Filtering object
+  pcl::SACSegmentation<pcl::PointXYZRGBA> segmentation_;  // Segmentation object
+  pcl::ExtractIndices<pcl::PointXYZRGBA> extract_;        // Filtering object
 };
 #endif /* SEGMENT__SAC_SEGMENTATION_HPP_ */

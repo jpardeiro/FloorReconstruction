@@ -36,12 +36,12 @@ class Cluster {
   /**
    *  @brief  Constructor of the cluster.
    */
-  Cluster() {}
+  Cluster() = default;
 
   /**
    *  @brief  Destructor of the cluster.
    */
-  virtual ~Cluster() {}
+  virtual ~Cluster() = default;
 
   /**
    *  @brief  Cluster function definition. The function is meant to be
@@ -58,7 +58,8 @@ class Cluster {
    *  @param  centroids Resulting vector of Centroid containing the center of
    *                    each cluster.
    */
-  virtual void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
-                       const uint32_t k, Centroids& centroids) = 0;
+  virtual void perform_clustering(
+      pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
+      std::vector<Centroid>& centroids) = 0;
 };
 #endif /* CLUSTER__CLUSTER_HPP_ */

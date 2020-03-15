@@ -47,16 +47,16 @@ class VoxelGrid : public Filter {
   /**
    *  @brief  Destructor of the filter.
    */
-  virtual ~VoxelGrid();
+  virtual ~VoxelGrid() = default;
 
   /**
    *  @brief  VoxelGrid specific implementation of the filter function.
    */
-  void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud);
+  void perform_filtering(
+      pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) override;
 
  private:
-  std::shared_ptr<pcl::VoxelGrid<pcl::PointXYZRGBA>>
-      _filter;  // Filter implementation.
+  pcl::VoxelGrid<pcl::PointXYZRGBA> filter_;  // Filter implementation.
 };
 
 #endif /* FILTER__VOXEL_GRID_HPP_ */

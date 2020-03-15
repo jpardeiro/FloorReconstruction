@@ -36,12 +36,12 @@ class Filter {
   /**
    *  @brief  Constructor of the filter.
    */
-  Filter() {}
+  Filter() = default;
 
   /**
    *  @brief  Destructor of the filter.
    */
-  virtual ~Filter() {}
+  virtual ~Filter() = default;
 
   /**
    *  @brief  Filter function definition. The function is meant to be
@@ -51,7 +51,8 @@ class Filter {
    *                function, the pointer will point to the resulted filtered
    *                cloud.
    */
-  virtual void filter(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) = 0;
+  virtual void perform_filtering(
+      pcl::PointCloud<pcl::PointXYZRGBA>::Ptr &cloud) = 0;
 };
 
 #endif /* FILTER__FILTER_HPP_ */

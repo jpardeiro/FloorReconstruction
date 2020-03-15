@@ -18,6 +18,7 @@
 #define CLUSTER__KMEANS_HPP_
 
 #include <pcl/io/pcd_io.h>
+#include <pcl/ml/kmeans.h>
 
 #include <floor_reconstruction/cluster/cluster.hpp>
 
@@ -35,17 +36,30 @@ class Kmeans : public Cluster {
   /**
    *  @brief  Constructor of the cluster.
    */
-  Kmeans();
+  Kmeans() = default;
 
   /**
    *  @brief  Destructor of the cluster.
    */
-  virtual ~Kmeans();
+  virtual ~Kmeans() = default;
 
   /**
    *  @brief  Kmeans specific implementation of the cluster function.
    */
-  void cluster(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud, const uint32_t k,
-               Centroids& centroids);
+  void perform_clustering(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+                          const uint32_t k,
+                          std::vector<Centroid>& centroids) override;
+
+ private:
+   /**
+   *  @brief  Converter function from the specific return type from the PCL
+   *          library to the general Centroids struct used by the code.
+   *
+   *  @param  pcl_centroids Centroids in the pcl::Kmeans library format
+   *  @param  centroids Array of centroids to be fullfilled with the containt of
+   *                    pcl_centroids.
+   */
+  void pcl_to_centroids_converter(const pcl::Kmeans::Centroids& pcl_centroids,
+                                  std::vector<Centroid>& centroids);
 };
 #endif /* CLUSTER__CLUSTER_HPP_ */

@@ -44,12 +44,12 @@ class Executor {
   /**
    *  @brief  Constructor of the executor.
    */
-  Executor();
+  Executor() = default;
 
   /**
    *  @brief  Destructor of the executor.
    */
-  virtual ~Executor();
+  virtual ~Executor() = default;
 
   /**
    *  @brief  Execute all the algorithim steps over a given pointcloud.
@@ -75,8 +75,8 @@ class Executor {
   void set_cluster(const std::shared_ptr<Cluster> &cluster);
 
  private:
-  std::shared_ptr<Cluster> _cluster;  // Cluster defined.
-  std::shared_ptr<Filter> _filter;    // Filter defined.
-  std::shared_ptr<Segment> _segment;  // Segment defined.
+  std::shared_ptr<Cluster> cluster_;  // Cluster defined.
+  std::shared_ptr<Filter> filter_;    // Filter defined.
+  std::shared_ptr<Segment> segment_;  // Segment defined.
 };
 #endif /* EXECUTOR_HPP_ */

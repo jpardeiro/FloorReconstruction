@@ -54,6 +54,4 @@ struct Point {
 
 typedef Point Centroid;
 
-typedef std::vector<Centroid> Centroids;
-
 #endif /* BASE__STRUCTS_HPP_ */

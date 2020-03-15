@@ -39,12 +39,12 @@ class Segment {
   /**
    *  @brief  Constructor of the segmentation object.
    */
-  Segment() {}
+  Segment() = default;
 
   /**
    *  @brief  Destructor of the segmentation object.
    */
-  virtual ~Segment() {}
+  virtual ~Segment() = default;
 
   /**
    *  @brief  Segment function definition. The function is meant to be
@@ -55,8 +55,9 @@ class Segment {
    *                   will contain the resulting segmented planes.
    */
 
-  virtual void segment(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
-                       std::vector<Surface::Ptr>& surfaces) = 0;
+  virtual void perform_segmentation(
+      pcl::PointCloud<pcl::PointXYZRGBA>::Ptr& cloud,
+      std::vector<Surface::Ptr>& surfaces) = 0;
 };
 
 #endif /* SEGMENT__SEGMENT_HPP_ */
